@@ -52,3 +52,6 @@ The application should be accessible to users with disabilities, following WCAG 
 
 5. User Acceptance Testing (UAT)
 UAT will be conducted to ensure that the application meets the specified requirements and is ready for production deployment.
+
+
+Host link: https://react-calendar-application.netlify.app/

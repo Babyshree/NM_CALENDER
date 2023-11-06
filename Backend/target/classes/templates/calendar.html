@@ -1,0 +1,130 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Calendar JX</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta charset="utf-8"/>
+    <link rel="stylesheet"
+          href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <!--
+        <link rel="stylesheet" th:href="@{/css/style.css}"/>
+    -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script th:src="@{/js/calendar.js}"/>
+</head>
+
+<body>
+
+
+<div class="container">
+    <div class="page-header">
+        <h1 th:text="${header}"/>
+        <div class="row">
+            <center>
+                <p id="monthyear" th:text="${currentmonth}"/>
+            </center>
+            <div>
+                <div>
+                    <button type="button" onclick="deleteAll()" class="btn btn-warning">Delete All</button>
+                </div>
+                <div>
+                    <center>
+                        <button type="button" onclick="changeMonth(-1)" class="btn btn-primary">Previous</button>
+                        <button type="button" onclick="changeMonth(1)" class="btn btn-primary">Next</button>
+                    </center>
+                </div>
+            </div>
+        </div>
+        <div class="row" style="padding-top: 15px;">
+            <div id="calendardiv" class="table-responsive" th:utext="${cal}"/>
+        </div>
+    </div>
+    <div class="modal fade" id="inputModal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Schedule Event</h4>
+                </div>
+                <div class="modal-body">
+                    <p id="date-data">M</p>
+                    <div>
+                        <h5>Input appointment</h5>
+                        <textarea class="form-control" id="text-data" rows="6"></textarea>
+                    </div>
+                    <div>
+                        <h5>Time</h5>
+                        <input id="time-data" type="time"></input>
+                    </div>
+                    <div>
+                        <h5>Notes</h5>
+                        <textarea class="form-control" id="note-data" rows="6"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="input-btn" class="btn btn-default" onclick="input()">Input</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="editModal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Schedule Event Edit</h4>
+                </div>
+                <div class="modal-body">
+                    <p id="edit-date-data">M</p>
+                    <div>
+                        <h5>Appointment</h5>
+                        <textarea class="form-control" id="edit-item-data" rows="6"></textarea>
+                        <button type="button" id="edit-item-btn" class="btn btn-default">Edit Item</button>
+                    </div>
+                    <br></br>
+                    <div>
+                        <h5>Time</h5>
+                        <input id="edit-time-data" type="time"></input>
+                        <button type="button" id="edit-time-btn" class="btn btn-default">Edit Time
+                        </button>
+                    </div>
+                    <br></br>
+                    <div>
+                        <h5>Note</h5>
+                        <textarea class="form-control" id="edit-note-data" rows="6"></textarea>
+                        <button type="button" id="edit-note-btn" class="btn btn-default">Edit Note
+                        </button>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="delete-item-btn" class="btn btn-default">Delete</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="deleteAllModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    Delete All
+                </div>
+                <div class="modal-body">
+                    Do you want to delete all? It is not possible to undo this operation.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-danger btn-ok" onclick="deleteAllAfterCheck()">Delete</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

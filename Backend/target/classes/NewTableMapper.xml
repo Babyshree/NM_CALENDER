@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jgh.calendarjx.model.NewTableMapper">
+    <insert id="createNewTable">
+        CREATE TABLE IF NOT EXISTS "appointments" ( `id` INTEGER PRIMARY KEY AUTOINCREMENT, `date` INTEGER NOT NULL, `appointment` TEXT NOT NULL, `notes` TEXT NOT NULL, `appointment_date` INTEGER NOT NULL, `appointment_time` TEXT NOT NULL);
+    </insert>
+
+</mapper>

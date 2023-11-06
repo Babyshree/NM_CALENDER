@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jgh.calendarjx.model.ScheduleMapper">
+    <select id="insertSchedule" parameterType="com.jgh.calendarjx.model.ScheduleItem" resultType="map">
+        insert into Appointments (date, appointment, notes, appointment_date, appointment_time) values
+        (#{date},#{appointment},#{notes},#{appointment_date}, #{time})
+    </select>
+
+    <update id="updateNotes" parameterType="com.jgh.calendarjx.model.Note">
+        update appointments set notes = #{note} where id = #{id};
+    </update>
+
+    <update id="updateItem" parameterType="com.jgh.calendarjx.model.ScheduleItem">
+        update appointments set appointment = #{appointment} where id = #{id};
+    </update>
+
+    <update id="updateTime" parameterType="com.jgh.calendarjx.model.ScheduleItem">
+        update appointments set appointment_time = #{time} where id = #{id};
+    </update>
+
+    <update id="updateDate" parameterType="com.jgh.calendarjx.model.ScheduleItem">
+        update appointments set appointment_date = #{appointment_date} where id = #{id};
+    </update>
+
+    <select id="getAllAppointments" resultType="com.jgh.calendarjx.model.ScheduleItem">
+        select * from appointments;
+    </select>
+
+    <select id="deleteAllAppointments">
+        delete from appointments;
+    </select>
+
+    <select id="getAppointment" resultType="com.jgh.calendarjx.model.ScheduleItem">
+        select * from appointments where id = #{id} limit 1;
+    </select>
+
+    <select id="delete" parameterType="int">
+        delete from appointments where id = #{id};
+    </select>
+</mapper>
